@@ -1,103 +1,150 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.uabc.web.spring</groupId>
-    <artifactId>HelloWorldSpringMvcApplication</artifactId>
-    <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>HelloWorldSpringMvcApplication Maven Webapp</name>
-    <url>http://maven.apache.org</url>
-    <dependencies>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.beingjavaguys.sphbn</groupId>
+	<artifactId>SpringHibernateAnnotations</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>SpringHibernateAnnotations Maven Webapp</name>
+	<url>http://maven.apache.org</url>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.8.1</version>
-            <scope>test</scope>
-        </dependency>
+	<properties>
+		<spring.version>4.0.5.RELEASE</spring.version>
+		<hibernate.version>4.3.5.Final</hibernate.version>
+		<log4j.version>1.2.17</log4j.version>
+		<jdk.version>1.7</jdk.version>
+		<context.path>SpringHibernateAnnotations</context.path>
+	</properties>
+	<developers>
 
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-catalina</artifactId>
-            <version>7.0.25</version>
-            <scope>provided</scope>
-        </dependency>
+		<developer>
+			<id>Nagesh Chauhan</id>
+			<email>beingjavaguy@gmail.com</email>
+			<organization>beingjavaguys.com</organization>
+			<organizationUrl>http://www.beingjavaguys.com</organizationUrl>
+			<roles>
+				<role>Java Developer</role>
+			</roles>
+			<timezone>+5:30</timezone>
+		</developer>
+	</developers>
 
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-coyote</artifactId>
-            <version>7.0.25</version>
-            <scope>provided</scope>
-        </dependency>
+	<build>
+		<finalName>${pom.artifactId}</finalName>
 
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jsp-api</artifactId>
-            <version>7.0.25</version>
-            <scope>provided</scope>
-        </dependency>
+		<plugins>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
-        </dependency>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.0-beta-1</version>
+				<configuration>
+					<path>/</path>
+					<port>9090</port>
+					<ajpPort>9009</ajpPort>
+					<!-- Uncomment and config to enable HTTPS.  Also, port will need to be 80. -->
+					<!--<httpsPort>443</httpsPort>-->
+					<!--<keystoreFile>foo</keystoreFile>-->
+					<!--<keystorePass>bar</keystorePass>-->
+					<uriEncoding>UTF-8</uriEncoding>
+				</configuration>
+			</plugin>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>3.2.9.RELEASE</version>
-        </dependency>
+			<plugin>
 
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>WEB-INF/lib/*.jar</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
 
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
 
-    </dependencies>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.25</version>
+			<scope>provided</scope>
+		</dependency>
 
-    <build>
-        <plugins>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-coyote</artifactId>
+			<version>7.0.25</version>
+			<scope>provided</scope>
+		</dependency>
 
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.0-beta-1</version>
-                <configuration>
-                    <path>/</path>
-                    <port>9090</port>
-                    <ajpPort>9009</ajpPort>
-                    <uriEncoding>UTF-8</uriEncoding>
-                </configuration>
-            </plugin>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jsp-api</artifactId>
+			<version>7.0.25</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <webResources>
-                        <resource>
-                            <directory>src/main/webapp</directory>
-                            <includes>
-                                <include>WEB-INF/lib/*.jar</include>
-                            </includes>
-                        </resource>
-                    </webResources>
-                </configuration>
-            </plugin>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.35</version>
+		</dependency>
+	</dependencies>
 </project>
