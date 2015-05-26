@@ -6,46 +6,45 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Being Java Guys | Edit User Details</title>
+<title>Being Java Guys | Registration Form</title>
 </head>
 <body>
 	<center>
 
 		<div style="color: teal; font-size: 30px">Being Java Guys |
-			Edit Details</div>
+			Registration Form</div>
 
 
 
-		<c:url var="userRegistration" value="saveUser.html" />
 		<form:form id="registerForm" modelAttribute="employee" method="post"
-			action="update">
+			action="register">
 			<table width="400px" height="150px">
 				<tr>
 					<td><form:label path="firstName">First Name</form:label></td>
-					<td><form:input path="firstName" value="${employeeObject.firstName}" /></td>
+					<td><form:input path="firstName" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="lastName">Last Name</form:label></td>
-					<td><form:input path="lastName" value="${employeeObject.lastName}"/></td>
+					<td><form:input path="lastName" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="email">Email</form:label></td>
-					<td><form:input path="email" value="${employeeObject.email}"/></td>
+					<td><form:input path="email" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="phone">Phone</form:label></td>
-					<td><form:input path="phone" value="${employeeObject.phone}"/></td>
+					<td><form:input path="phone" /></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="submit" value="Update" />
+					<td><input type="submit" value="Register" />
 					</td>
 				</tr>
 			</table>
 		</form:form>
 
 
-		
+		<a href="list">Click Here to see User List</a>
 	</center>
 </body>
 </html>
