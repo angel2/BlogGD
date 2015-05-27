@@ -29,11 +29,24 @@ public class PostController {
         mm.getModel().put("id", post.getId());
         return mm;
 	}
-	
+
+
 	@RequestMapping("listPost")
-	public ModelAndView getList() {
-		List postList = postService.getList();
+	public ModelAndView getListAproval() {
+		List postList = postService.getListApproval();
 		return new ModelAndView("index","postList",postList);
+	}
+
+	@RequestMapping("evaluate")
+	public ModelAndView evaluate() {
+		List postList = postService.getList();
+		return new ModelAndView("evaluate","postList",postList);
+	}
+
+	@RequestMapping("evaluatePost")
+	public ModelAndView evaluatePost(@RequestParam int id,@ModelAttribute Post post) {
+		Post postObject = postService.getRowById(id);
+		return new ModelAndView("evaluatePost","postObject",postObject);
 	}
 	
 	@RequestMapping("deletePost")
@@ -58,6 +71,26 @@ public class PostController {
 		postService.updateRow(post);
         ModelAndView mm = new ModelAndView("redirect:showPost");
         mm.getModel().put("id", post.getId());
+		return mm;
+	}
+
+	@RequestMapping("changePostStatus")
+	public ModelAndView changePostStatus(@RequestParam int status, @RequestParam int idPost) {
+
+		Post post = postService.getPostList(idPost).remove(0);
+
+		String newStatus = "";
+		if (status == 1){
+			newStatus = "Approval";
+		}else{
+			newStatus = "disapproval";
+		}
+
+		post.setStatus(newStatus);
+
+
+		postService.updateRow(post);
+		ModelAndView mm = new ModelAndView("redirect:evaluate");
 		return mm;
 	}
 

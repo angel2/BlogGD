@@ -17,9 +17,10 @@
 
          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
            <ul class="nav navbar-nav">
-             <li><a href="#">Perfil</a></li>
-             <li><a href="#">Crear post</a></li>
-             <li><a href="#">Evaluar posts</a></li>
+             <li><a href="profile">Profile</a></li>
+             <li><a href="formPost">Create post</a></li>
+             <li><a href="listTopic">Topics</a></li>
+             <li><a href="evaluate">Evaluate post</a></li>
              <li><a href="#">Historial</a></li>
            </ul>
          </div>

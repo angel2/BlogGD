@@ -1,3 +1,36 @@
 .postDiv{
-    height: 100px;
+    height: 200px;
+    margin-top: 10px;
+
+}
+
+.textPost{
+
+
+}
+
+.postDiv:hover{
+    opacity: 0.7;
+}
+
+.imagePost{
+    overflow:hidden;
+    height: 200px;
+    border-radius: 3%;
+}
+
+.imgPost{
+    height: 200px;
+}
+
+a:link{
+    color: black;
+}
+
+a:visited{
+    color: black;
+}
+
+a:hover{
+    color: black;
 }

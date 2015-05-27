@@ -9,6 +9,8 @@
 </head>
 <body>
 
+
+
 	<div class="content">
 
         <form:form id="loginForm" modelAttribute="user" method="post" action="login">

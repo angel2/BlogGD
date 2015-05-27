@@ -1,6 +1,7 @@
 package com.beingjavaguys.dao;
 
 import com.beingjavaguys.domain.Post;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -33,6 +34,29 @@ public class PostDaoImpl implements PostDao {
 		@SuppressWarnings("unchecked")
 		List<Post> postList = session.createQuery("from Post")
 				.list();
+		session.close();
+		return postList;
+	}
+
+	@Override
+	public List<Post> getListApproval() {
+		Session session = sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<Post> postList = session.createQuery("from Post where status = 'Approval'").list();
+		session.close();
+		return postList;
+	}
+
+
+	@Override
+	public List<Post> getPostList(int id) {
+		String sql = "FROM Post WHERE id = :id";
+
+		Session session = sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		Query query = session.createQuery(sql);
+		query.setParameter("id", id);
+		List<Post> postList = query.list();
 		session.close();
 		return postList;
 	}

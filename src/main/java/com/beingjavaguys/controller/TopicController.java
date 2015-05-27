@@ -31,7 +31,7 @@ public class TopicController {
 	@RequestMapping("listTopic")
 	public ModelAndView getList() {
 		List topicList = topicService.getList();
-		return new ModelAndView("listTopic","topicList",topicList);
+		return new ModelAndView("listTopic","topics",topicList);
 	}
 	
 	@RequestMapping("deleteTopic")
@@ -48,14 +48,13 @@ public class TopicController {
     @RequestMapping("editTopic")
     public ModelAndView edit2(@RequestParam int id,@ModelAttribute Topic topic) {
         Topic topicObject = topicService.getRowById(id);
-        return new ModelAndView("editProfile","topicObject",topicObject);
+        return new ModelAndView("updateTopic","topic",topicObject);
     }
 	
 	@RequestMapping("updateTopic")
 	public ModelAndView update(@ModelAttribute Topic topic) {
 		topicService.updateRow(topic);
-        ModelAndView mm = new ModelAndView("redirect:showTopic");
-        mm.getModel().put("id", topic.getId());
+        ModelAndView mm = new ModelAndView("redirect:listTopic");
 		return mm;
 	}
 

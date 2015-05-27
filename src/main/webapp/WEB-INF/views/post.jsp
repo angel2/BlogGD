@@ -8,7 +8,7 @@
 <title></title>
 </head>
 <body>
-	<c:import url="menu.jsp" />
+	<c:import url="header.jsp" />
 
 	<div class="content">
         <c:out value="${postObject.contetPost}" escapeXml="false" />

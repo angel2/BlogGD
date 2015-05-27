@@ -15,4 +15,8 @@ public interface PostService {
 
 	public int deleteRow(int id);
 
+	public List<Post> getPostList(int id);
+
+	public List<Post> getListApproval();
+
 }

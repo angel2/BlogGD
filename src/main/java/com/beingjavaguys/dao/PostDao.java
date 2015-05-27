@@ -9,10 +9,14 @@ public interface PostDao {
 
 	public List<Post> getList();
 
+	public List<Post> getListApproval();
+
 	public Post getRowById(int id);
 
 	public int updateRow(Post post);
 
 	public int deleteRow(int id);
+
+	public List<Post> getPostList(int id);
 
 }

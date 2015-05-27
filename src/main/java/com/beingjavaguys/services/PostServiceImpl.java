@@ -36,4 +36,14 @@ public class PostServiceImpl implements PostService {
 		return postDao.deleteRow(id);
 	}
 
+	@Override
+	public List<Post> getPostList(int id){
+		return postDao.getPostList(id);
+	}
+
+	@Override
+	public List<Post> getListApproval(){
+		return postDao.getListApproval();
+	}
+
 }
