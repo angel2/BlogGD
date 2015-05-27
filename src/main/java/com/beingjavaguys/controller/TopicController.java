@@ -27,35 +27,11 @@ public class TopicController {
 		topicService.insertRow(topic);
         return new ModelAndView("redirect:formTopic");
 	}
-	
+
 	@RequestMapping("listTopic")
 	public ModelAndView getList() {
 		List topicList = topicService.getList();
-		return new ModelAndView("listTopic","topics",topicList);
-	}
-	
-	@RequestMapping("deleteTopic")
-	public ModelAndView delete(@RequestParam int id) {
-		topicService.deleteRow(id);
-		return new ModelAndView("redirect:listTopic");
-	}
-	
-	@RequestMapping("showTopic")
-	public ModelAndView edit(@RequestParam int id,@ModelAttribute Topic topic) {
-		Topic topicObject = topicService.getRowById(id);
-		return new ModelAndView("profile","topicObject",topicObject);
-	}
-    @RequestMapping("editTopic")
-    public ModelAndView edit2(@RequestParam int id,@ModelAttribute Topic topic) {
-        Topic topicObject = topicService.getRowById(id);
-        return new ModelAndView("updateTopic","topic",topicObject);
-    }
-	
-	@RequestMapping("updateTopic")
-	public ModelAndView update(@ModelAttribute Topic topic) {
-		topicService.updateRow(topic);
-        ModelAndView mm = new ModelAndView("redirect:listTopic");
-		return mm;
+		return new ModelAndView("listTopic","topicList",topicList);
 	}
 
 }

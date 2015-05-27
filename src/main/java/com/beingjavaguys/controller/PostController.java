@@ -33,18 +33,6 @@ public class PostController {
     @RequestMapping("listPost")
     public ModelAndView getList() {
         List postList = postService.getList();
-		return new ModelAndView("evaluate","postList",postList);
-	}
-
-	@RequestMapping("evaluatePost")
-	public ModelAndView evaluatePost(@RequestParam int id,@ModelAttribute Post post) {
-		Post postObject = postService.getRowById(id);
-		return new ModelAndView("evaluatePost","postObject",postObject);
-	}
-	
-	@RequestMapping("deletePost")
-	public ModelAndView delete(@RequestParam int id) {
-		postService.deleteRow(id);
         return new ModelAndView("index","postList",postList);
     }
 
@@ -53,38 +41,4 @@ public class PostController {
         Post postObject = postService.getRowById(id);
         return new ModelAndView("post","postObject",postObject);
     }
-    @RequestMapping("editPost")
-    public ModelAndView edit2(@RequestParam int id,@ModelAttribute Post post) {
-        Post postObject = postService.getRowById(id);
-        return new ModelAndView("editProfile","postObject",postObject);
-    }
-	
-	@RequestMapping("updatePost")
-	public ModelAndView update(@ModelAttribute Post post) {
-		postService.updateRow(post);
-        ModelAndView mm = new ModelAndView("redirect:showPost");
-        mm.getModel().put("id", post.getId());
-		return mm;
-	}
-
-	@RequestMapping("changePostStatus")
-	public ModelAndView changePostStatus(@RequestParam int status, @RequestParam int idPost) {
-
-		Post post = postService.getPostList(idPost).remove(0);
-
-		String newStatus = "";
-		if (status == 1){
-			newStatus = "Approval";
-		}else{
-			newStatus = "disapproval";
-		}
-
-		post.setStatus(newStatus);
-
-
-		postService.updateRow(post);
-		ModelAndView mm = new ModelAndView("redirect:evaluate");
-		return mm;
-	}
-
 }
