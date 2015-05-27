@@ -1,8 +1,7 @@
 package com.beingjavaguys.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -11,10 +10,16 @@ public class Post {
 	@Id
 	@GeneratedValue
 	private int id;
-    private int name;
-    private int desc;
-    private int color;
-    private int img;
+    @Column(name="date",insertable=false)
+    private Date date;
+    private String contetPost;
+    private String frontImg;
+    private int Users_id;
+    private int Topics_id;
+    @Column(name="status", insertable=false)
+    private String status;
+    private String title;
+
 
     public int getId() {
         return id;
@@ -24,35 +29,59 @@ public class Post {
         this.id = id;
     }
 
-    public int getName() {
-        return name;
+    public Date getDate() {
+        return date;
     }
 
-    public void setName(int name) {
-        this.name = name;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public int getDesc() {
-        return desc;
+    public String getContetPost() {
+        return contetPost;
     }
 
-    public void setDesc(int desc) {
-        this.desc = desc;
+    public void setContetPost(String urlPost) {
+        this.contetPost = urlPost;
     }
 
-    public int getColor() {
-        return color;
+    public String getFrontImg() {
+        return frontImg;
     }
 
-    public void setColor(int color) {
-        this.color = color;
+    public void setFrontImg(String frontImg) {
+        this.frontImg = frontImg;
     }
 
-    public int getImg() {
-        return img;
+    public int getUsers_id() {
+        return Users_id;
     }
 
-    public void setImg(int img) {
-        this.img = img;
+    public void setUsers_id(int users_id) {
+        Users_id = users_id;
+    }
+
+    public int getTopics_id() {
+        return Topics_id;
+    }
+
+    public void setTopics_id(int topics_id) {
+        Topics_id = topics_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

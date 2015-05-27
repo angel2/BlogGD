@@ -10,6 +10,7 @@
     <context:component-scan base-package="com.beingjavaguys.controller" />
     <context:property-placeholder location="classpath:database.properties" />
     <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/emoticons/**" location="/resources/emoticons/" />
     <mvc:annotation-driven />
 
     <bean id="dataSource"
@@ -27,6 +28,8 @@
             <list>  
                 <value>com.beingjavaguys.domain.Employee</value>
                 <value>com.beingjavaguys.domain.User</value>
+                <value>com.beingjavaguys.domain.Topic</value>
+                <value>com.beingjavaguys.domain.Post</value>
             </list>  
         </property> 
         <property name="hibernateProperties">
@@ -62,5 +65,10 @@
     <bean id="userDaoImpl" class="com.beingjavaguys.dao.UserDaoImpl" />
     <bean id="userServiceImpl" class="com.beingjavaguys.services.UserServiceImpl" />
 
+    <bean id="postDaoImpl" class="com.beingjavaguys.dao.PostDaoImpl" />
+    <bean id="postServiceImpl" class="com.beingjavaguys.services.PostServiceImpl" />
+
+    <bean id="topicDaoImpl" class="com.beingjavaguys.dao.TopicDaoImpl" />
+    <bean id="topicServiceImpl" class="com.beingjavaguys.services.TopicServiceImpl" />
 
 </beans>

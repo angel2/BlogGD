@@ -9,7 +9,7 @@
 <title></title>
 </head>
 <body>
-	<c:import url="menu.jsp"></c:import>
+	<c:import url="menu.jsp" />
 
 	<div class="content">
         <form:form id="userForm" modelAttribute="user" method="post" action="registerUser">
