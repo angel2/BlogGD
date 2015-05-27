@@ -17,12 +17,12 @@ public class TopicController {
 	@Autowired
 	TopicService topicService;
 
-	@RequestMapping("formTopic")
+	@RequestMapping("admin/formTopic")
 	public ModelAndView getForm(@ModelAttribute Topic topic) {
 		return new ModelAndView("addTopic");
 	}
 	
-	@RequestMapping("newTopic")
+	@RequestMapping("admin/newTopic")
 	public ModelAndView register(@ModelAttribute Topic topic) {
 		topicService.insertRow(topic);
         return new ModelAndView("redirect:formTopic");

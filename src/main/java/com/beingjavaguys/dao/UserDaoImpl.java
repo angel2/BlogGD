@@ -1,6 +1,7 @@
 package com.beingjavaguys.dao;
 
 import com.beingjavaguys.domain.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,7 +38,22 @@ public class UserDaoImpl implements UserDao {
 		return userList;
 	}
 
-	@Override
+    @Override
+    public List<User> getUser(String email, String pass) {
+        Session session = sessionFactory.openSession();
+        String SQL = "FROM User " +
+                "     WHERE email  = :email " +
+                "     AND password = :pass ";
+        @SuppressWarnings("unchecked")
+        Query query = session.createQuery(SQL);
+        query.setParameter("email",email);
+        query.setParameter("pass",pass);
+        List<User> userList =query.list();
+        session.close();
+        return userList;
+    }
+
+    @Override
 	public User getRowById(int id) {
 		Session session = sessionFactory.openSession();
 		User user = (User) session.load(User.class, id);

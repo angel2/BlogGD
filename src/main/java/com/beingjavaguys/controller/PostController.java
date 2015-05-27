@@ -13,33 +13,26 @@ import java.util.List;
 
 @Controller
 public class PostController {
-	
-	@Autowired
-	PostService postService;
+    
+    @Autowired
+    PostService postService;
 
-	@RequestMapping("formPost")
-	public ModelAndView getForm(@ModelAttribute Post post) {
-		return new ModelAndView("addPost");
-	}
-	
-	@RequestMapping("newPost")
-	public ModelAndView register(@ModelAttribute Post post) {
-		postService.insertRow(post);
+    @RequestMapping("collaborator/formPost")
+    public ModelAndView getForm(@ModelAttribute Post post) {
+        return new ModelAndView("addPost");
+    }
+    
+    @RequestMapping("collaborator/newPost")
+    public ModelAndView register(@ModelAttribute Post post) {
+        postService.insertRow(post);
         ModelAndView mm = new ModelAndView("redirect:formPost");
         mm.getModel().put("id", post.getId());
         return mm;
-	}
-
-
-	@RequestMapping("listPost")
-	public ModelAndView getListAproval() {
-		List postList = postService.getListApproval();
-		return new ModelAndView("index","postList",postList);
-	}
-
-	@RequestMapping("evaluate")
-	public ModelAndView evaluate() {
-		List postList = postService.getList();
+    }
+    
+    @RequestMapping("listPost")
+    public ModelAndView getList() {
+        List postList = postService.getList();
 		return new ModelAndView("evaluate","postList",postList);
 	}
 
@@ -52,14 +45,14 @@ public class PostController {
 	@RequestMapping("deletePost")
 	public ModelAndView delete(@RequestParam int id) {
 		postService.deleteRow(id);
-		return new ModelAndView("redirect:listPost");
-	}
-	
-	@RequestMapping("viewPost")
-	public ModelAndView edit(@RequestParam int id,@ModelAttribute Post post) {
-		Post postObject = postService.getRowById(id);
-		return new ModelAndView("post","postObject",postObject);
-	}
+        return new ModelAndView("index","postList",postList);
+    }
+
+    @RequestMapping("viewPost")
+    public ModelAndView edit(@RequestParam int id,@ModelAttribute Post post) {
+        Post postObject = postService.getRowById(id);
+        return new ModelAndView("post","postObject",postObject);
+    }
     @RequestMapping("editPost")
     public ModelAndView edit2(@RequestParam int id,@ModelAttribute Post post) {
         Post postObject = postService.getRowById(id);

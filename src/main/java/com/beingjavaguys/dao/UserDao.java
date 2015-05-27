@@ -9,7 +9,9 @@ public interface UserDao {
 
 	public List<User> getList();
 
-	public User getRowById(int id);
+    List<User> getUser(String email, String pass);
+
+    public User getRowById(int id);
 
 	public int updateRow(User user);
 
